@@ -26,6 +26,10 @@ Minitest::Reporters.use! Minitest::Reporters::MeanTimeReporter.new
 # Minitest::Reporters.use! Minitest::Reporters::ProgressReporter.new
 # Minitest::Reporters.use! Minitest::Reporters::ProgressReporter.new
 
+DatabaseCleaner[:mongoid].clean_with :deletion
+DatabaseCleaner[:mongoid].strategy = :deletion
+
+
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   [
     SimpleCov::Formatter::HTMLFormatter,
@@ -49,6 +53,13 @@ class ActiveSupport::TestCase
   parallelize_teardown do |_worker|
     SimpleCov.result
   end
+
+  def around(&block)
+    DatabaseCleaner.cleaning do
+      yield block
+    end
+  end
+
 
   def self.validate_presence_test(model, fields = [])
     fields.each do |field|

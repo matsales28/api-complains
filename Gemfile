@@ -31,6 +31,7 @@ group :test do
   gem 'simplecov' # rubocop:todo Bundler/DuplicatedGem
   gem 'simplecov-console'
   gem 'minitest-reporters'
+  gem 'database_cleaner-mongoid'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
