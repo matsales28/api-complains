@@ -1,6 +1,8 @@
 require 'simplecov'
 require 'simplecov-console'
+require 'minitest/autorun'
 require 'minitest/reporters'
+
 
 class Minitest::Reporters::SpecReporter
   def record_print_status(test)
@@ -21,8 +23,8 @@ SimpleCov.start 'rails' do
   add_filter 'application_mailer.rb'
 end
 # For tests performance tuning:
-# Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
-Minitest::Reporters.use! Minitest::Reporters::MeanTimeReporter.new
+Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
+# Minitest::Reporters.use! Minitest::Reporters::MeanTimeReporter.new
 # Minitest::Reporters.use! Minitest::Reporters::ProgressReporter.new
 # Minitest::Reporters.use! Minitest::Reporters::ProgressReporter.new
 
