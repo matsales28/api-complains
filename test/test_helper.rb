@@ -39,6 +39,7 @@ require 'rails/test_help'
 require 'minitest/autorun'
 
 class ActiveSupport::TestCase
+  include FactoryBot::Syntax::Methods
   extend ActionDispatch::TestProcess
   parallelize(workers: :number_of_processors)
 
@@ -48,4 +49,17 @@ class ActiveSupport::TestCase
   parallelize_teardown do |_worker|
     SimpleCov.result
   end
+
+  def self.validate_presence_test(model, fields = [])
+    fields.each do |field|
+      test "validates [#{model}] [#{field}] presence" do
+        object = build(:"#{model}", "#{field}": '')
+        assert_not object.valid?
+        assert_not_empty object.errors[:"#{field}"]
+        object = build(:"#{model}")
+        assert object.valid?
+      end
+    end
+  end
+
 end
