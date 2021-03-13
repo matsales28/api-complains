@@ -9,6 +9,8 @@ services:
 
   api-complains:
     build: .
+    stdin_open: true
+    tty: true
     environment:
       - PORT=3000
     volumes:

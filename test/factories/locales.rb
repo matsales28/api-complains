@@ -1,7 +1,7 @@
 FactoryBot.define do
-  factory :locale do
-    city { "Fortaleza" }
-    state { "CE" }
-    country { "Brazil" }
+  factory :locale, class: Locale do
+    city { 'Fortaleza' }
+    state { 'CE' }
+    country { 'Brazil' }
   end
 end

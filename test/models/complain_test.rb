@@ -1,7 +1,7 @@
-require "test_helper"
+require 'test_helper'
 
 class ComplainTest < ActiveSupport::TestCase
-  validate_presence_test :complain, %i[description title company]
+  validate_presence_test :complain, %i[description title company locale]
 
   test 'exists Complain class' do
     assert_instance_of Complain, build(:complain)
