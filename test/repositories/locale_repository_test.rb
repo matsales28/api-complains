@@ -22,7 +22,7 @@ class LocaleRepositoryTest < ActiveSupport::TestCase
     params = {city: 'Fortaleza', state: 'CE', country: 'Brazil'}
     create(:locale, params)
     response, success = LocaleRepository.new.find_or_create_by(params)
-    
+
     assert success
     assert_not response.new_record?
     assert_instance_of Locale, response
