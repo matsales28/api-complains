@@ -47,18 +47,6 @@ class ActiveSupport::TestCase
   extend ActionDispatch::TestProcess
   include FactoryBot::Syntax::Methods
 
-  parallelize(workers: :number_of_processors)
-
-  parallelize_setup do |worker|
-    SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
-    DatabaseCleaner.start
-  end
-
-  parallelize_teardown do |_worker|
-    SimpleCov.result
-    DatabaseCleaner.clean
-  end
-
   def setup
     DatabaseCleaner.clean
   end

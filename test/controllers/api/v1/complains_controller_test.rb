@@ -3,9 +3,6 @@ require 'test_helper'
 module Api
   module V1
     class ComplainsControllerTest < ActionDispatch::IntegrationTest
-      def setup
-        DatabaseCleaner.clean
-      end
       test '#create should return a Complain and status :ok when valid params' do
         params = {complain: {title: 'Mocking title', description: 'Mocking description', company: 'Gocase', locale: { city: 'Fortaleza', state: 'CE', country: 'BR'}}}
         post api_v1_create_path, params: params
