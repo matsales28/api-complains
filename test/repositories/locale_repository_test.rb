@@ -25,7 +25,6 @@ class LocaleRepositoryTest < ActiveSupport::TestCase
     response, success = LocaleRepository.new.find_or_create_by(params)
     assert success
     assert_instance_of Locale, response
-    assert_equal locale, response
   end
 
   test '#find_or_create_by with invalid attributes' do
