@@ -10,12 +10,11 @@ module ComplainsOperations
 
     def call
       locale_response, success = locale_repo.find_or_create_by(locale_params)
-      return [locale_response, :bad_request] unless success
+      return [locale_response, success] unless success
 
       complain_response, success = complain_repo.create(complain_params.merge({locale: locale_response}))
-      return [complain_response.errors.messages, :bad_request] unless success
 
-      [complain_response, :ok]
+      [complain_response, success]
     end
 
     private

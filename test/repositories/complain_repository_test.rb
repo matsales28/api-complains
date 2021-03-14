@@ -15,7 +15,7 @@ class ComplainRepositoryTest < ActiveSupport::TestCase
     assert success
   end
 
-  test '#create return an error and not success if given invalid params' do
+  test '#create return complain and not success if given invalid params' do
     locale = create(:locale)
     params = {
       locale: locale,
@@ -23,10 +23,9 @@ class ComplainRepositoryTest < ActiveSupport::TestCase
       company: 'Company mock',
       title: nil
     }
-
     response, success = ComplainRepository.new.create(params)
-    assert_equal({title: ['can\'t be blank']}, response)
-    assert_not_instance_of Complain, response
+    assert response.new_record?
+    assert_not_empty response.errors.messages
     assert_not success
   end
 end

@@ -12,10 +12,8 @@ class LocaleRepositoryTest < ActiveSupport::TestCase
     params = {city: nil, state: nil, country: nil}
     response, success = LocaleRepository.new.find_or_create_by(params)
     assert_not success
-    assert_equal({
-      city: ['can\'t be blank'],
-      state: ['can\'t be blank'],
-      country: ['can\'t be blank']}, response)
+    assert response.new_record?
+    assert_not_empty response.errors.messages
   end
 
   test '#find_or_create_by should not create a new Locale if founded one' do

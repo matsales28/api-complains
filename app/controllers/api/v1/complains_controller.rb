@@ -2,7 +2,12 @@ module Api
   module V1
     class ComplainsController < ApplicationController
       def create
-        json_response(permitted_params)
+        @complain, success = ComplainsOperations::Create.new(params: permitted_params).call
+        if success
+          json_response(@complain, :ok)
+        else
+          json_response(@complain.errors.messages, :unprocessable_entity)
+        end
       end
 
       private

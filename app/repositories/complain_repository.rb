@@ -8,7 +8,7 @@ class ComplainRepository
       description: description,
       locale: locale
     )
-    return Error[complain.errors.messages] unless complain.save
+    return Error[complain] unless complain.save
 
     Success[complain]
   end

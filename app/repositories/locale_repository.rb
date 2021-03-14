@@ -3,7 +3,7 @@ class LocaleRepository
 
   def find_or_create_by(city:, country:, state:)
     locale = Locale.find_or_create_by(city: city, country: country, state: state)
-    return Error[locale.errors.messages] unless locale.valid?
+    return Error[locale] unless locale.valid?
 
     Success[locale]
   end
