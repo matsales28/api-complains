@@ -7,7 +7,6 @@ module Api
         DatabaseCleaner.clean
       end
       test '#create should return a Complain and status :ok when valid params' do
-        byebug
         params = {complain: {title: 'Mocking title', description: 'Mocking description', company: 'Gocase', locale: { city: 'Fortaleza', state: 'CE', country: 'BR'}}}
         post api_v1_create_path, params: params
         complain = Complain.first
