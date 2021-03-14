@@ -9,4 +9,8 @@ class Locale
   validates_presence_of :city, :state, :country
   validates :city, uniqueness:  {scope: [:country, :state]}
   has_many :complains
+
+  scope :by_city, -> (city) { where(city: city) if city.present? }
+  scope :by_state, -> (state) { where(state: state) if state.present? }
+  scope :by_country, -> (country) { where(country: country) if country.present? }
 end

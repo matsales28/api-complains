@@ -2,6 +2,7 @@ require 'simplecov'
 require 'simplecov-console'
 require 'minitest/autorun'
 require 'minitest/reporters'
+require 'database_cleaner/mongoid'
 
 
 class Minitest::Reporters::SpecReporter
@@ -35,29 +36,16 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   ]
 )
 
-DatabaseCleaner[:mongoid].strategy = :deletion
 
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
 require 'minitest/autorun'
+require 'rails/mongoid'
 #
 class ActiveSupport::TestCase
   extend ActionDispatch::TestProcess
   include FactoryBot::Syntax::Methods
-
-  parallelize(workers: :number_of_processors)
-
-  parallelize_setup do |worker|
-    SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
-    DatabaseCleaner[:mongoid].clean_with(:deletion)
-    DatabaseCleaner.clean
-  end
-  parallelize_teardown do |_worker|
-    SimpleCov.result
-    DatabaseCleaner[:mongoid].clean_with(:deletion)
-    DatabaseCleaner.clean
-  end
 
   def setup
     DatabaseCleaner.clean
