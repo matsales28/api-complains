@@ -3,19 +3,36 @@ module ComplainsOperations
     attr_reader :complain_repo, :locale_repo, :params
 
     def initialize(params:)
-      # @complain_repo = ::ComplainRepository.new
+      @complain_repo = ComplainRepository.new
       @locale_repo = LocaleRepository.new
       @params = params
     end
 
     def call
-      success, response = locale_repo.find_or_create_by(params[:locale])
-      return [response, :bad_request] unless success
+      locale_response, success = locale_repo.find_or_create_by(locale_params)
+      return [locale_response, :bad_request] unless success
 
-      complain = Complain.new(title: params[:title], description: params[:description], company: params[:company], locale: response)
-      return [complain.errors.messages, :bad_request] unless complain.save
+      complain_response, success = complain_repo.create(complain_params.merge({locale: locale_response}))
+      return [complain_response.errors.messages, :bad_request] unless success
 
-      [complain, true]
+      [complain_response, :ok]
     end
+
+    private
+      def complain_params
+        {
+          title: params[:title],
+          description: params[:description],
+          company: params[:company]
+        }
+      end
+
+      def locale_params
+        {
+          city: params.dig(:locale, :city),
+          state: params.dig(:locale, :state),
+          country: params.dig(:locale, :country)
+        }
+      end
   end
 end

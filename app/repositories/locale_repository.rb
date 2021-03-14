@@ -1,6 +1,5 @@
 class LocaleRepository
-  Error = -> (response) { [response, false] }
-  Success = -> (response) { [response, true] }
+  include Responseable
 
   def find_or_create_by(**attrs)
     locale = Locale.find_or_create_by(attrs)
@@ -8,7 +7,6 @@ class LocaleRepository
 
     Success[locale]
   rescue Mongoid::Errors::MongoidError => e
-    ## Log error
     Error[{message: 'Invalid attributes given', error: e}]
   end
 end
