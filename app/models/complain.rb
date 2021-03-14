@@ -7,5 +7,5 @@ class Complain
   field :company, type: String
 
   belongs_to :locale
-  validates_presence_of :title, :description, :company
+  validates_presence_of :title, :description, :company, :locale
 end

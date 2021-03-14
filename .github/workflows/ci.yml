@@ -9,7 +9,7 @@ jobs:
         run: docker-compose up -d
       - name: Create database
         run: docker-compose run api-complains rake db:create
-      - name: Create database
+      - name: Run tests
         env:
           RAILS_ENV: test
         run: docker-compose run api-complains rake test
