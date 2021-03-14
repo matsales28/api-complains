@@ -20,11 +20,12 @@ class LocaleRepositoryTest < ActiveSupport::TestCase
 
   test '#find_or_create_by should not create a new Locale if founded one' do
     params = {city: 'Fortaleza', state: 'CE', country: 'Brazil'}
-    locale = create(:locale, params)
+    create(:locale, params)
 
     response, success = LocaleRepository.new.find_or_create_by(params)
     assert success
     assert_instance_of Locale, response
+    assert_equal Locale.count, 1
   end
 
   test '#find_or_create_by with invalid attributes' do
