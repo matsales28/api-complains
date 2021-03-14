@@ -25,6 +25,7 @@ jobs:
             echo "Executing within master branch"
             docker-compose run api-complains skunk
           fi
+          docker-compose run api-complains rubycritic
       - name: Upload Code Coverage
         uses: actions/upload-artifact@v2
         with:
