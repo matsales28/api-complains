@@ -17,12 +17,12 @@ jobs:
         run: docker-compose run api-complains rake test
       - name: Run Skunk on Project
         run: |
-        CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
           if [[ "$CURRENT_BRANCH" != "master" ]]; then
-            docker-compose run api-complains echo "Executing within branch: $CURRENT_BRANCH"
+            echo "Executing within branch: $CURRENT_BRANCH"
             docker-compose run api-complains skunk -b master
           else
-            docker-compose run api-complains echo "Executing within master branch"
+            echo "Executing within master branch"
             docker-compose run api-complains skunk
           fi
       - name: Upload Code Coverage
