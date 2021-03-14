@@ -3,24 +3,13 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      mongodb:
-        image: mongo:3.4.23
-        ports: ["27017:27017"]
     steps:
       - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.x
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-      - name: Build and run tests
+      - name: Build Stack
+        run: docker-compose up -d
+      - name: Create database
+        run: docker-compose api-complains rake db:create
+      - name: Create database
         env:
           RAILS_ENV: test
-        run: |
-          sudo apt-get -yqq install libpq-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rails test
+        run: docker-compose api-complains rake test

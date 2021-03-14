@@ -1,6 +1,5 @@
 version: "3.7"
 services:
-
   mongo-service:
     image: "mongo:4.2.8"
     ports: ["27017:27017"]
