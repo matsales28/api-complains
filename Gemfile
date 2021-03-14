@@ -31,6 +31,7 @@ group :test do
   gem 'simplecov' # rubocop:todo Bundler/DuplicatedGem
   gem 'simplecov-console'
   gem 'minitest-reporters'
+  gem 'database_cleaner-mongoid'
 end
 
 

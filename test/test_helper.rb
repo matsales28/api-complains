@@ -35,6 +35,8 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new(
   ]
 )
 
+DatabaseCleaner[:mongoid].strategy = :deletion
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
@@ -48,9 +50,13 @@ class ActiveSupport::TestCase
 
   parallelize_setup do |worker|
     SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
+    DatabaseCleaner[:mongoid].clean_with(:deletion)
+    DatabaseCleaner.clean
   end
   parallelize_teardown do |_worker|
     SimpleCov.result
+    DatabaseCleaner[:mongoid].clean_with(:deletion)
+    DatabaseCleaner.clean
   end
 
   def self.validate_presence_test(model, fields = [])
