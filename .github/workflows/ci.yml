@@ -8,8 +8,8 @@ jobs:
       - name: Build Stack
         run: docker-compose up -d
       - name: Create database
-        run: docker-compose api-complains rake db:create
+        run: docker-compose run api-complains rake db:create
       - name: Create database
         env:
           RAILS_ENV: test
-        run: docker-compose api-complains rake test
+        run: docker-compose run api-complains rake test
