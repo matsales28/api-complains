@@ -11,7 +11,5 @@ class ComplainRepository
     return Error[complain.errors.messages] unless complain.save
 
     Success[complain]
-  rescue Mongoid::Errors::MongoidError => e
-    Error[{message: 'Invalid attributes given', error: e}]
   end
 end
