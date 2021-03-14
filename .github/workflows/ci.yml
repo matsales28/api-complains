@@ -30,3 +30,8 @@ jobs:
         with:
           name: code-coverage
           path: coverage/
+      - name: Upload Ruby Critic
+        uses: actions/upload-artifact@v2
+        with:
+          name: ruby-critic
+          path: tmp/rubycritic

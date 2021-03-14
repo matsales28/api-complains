@@ -1,6 +1,6 @@
 module ComplainsOperations
   class Create
-    attr_accessor :complain_repo, :locale_repo, :params
+    attr_reader :complain_repo, :locale_repo, :params
 
     def initialize(params:)
       # @complain_repo = ::ComplainRepository.new
