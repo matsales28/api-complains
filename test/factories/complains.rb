@@ -3,5 +3,6 @@ FactoryBot.define do
     title { Faker::GreekPhilosophers.name }
     description { Faker::GreekPhilosophers.quote }
     company { 'Gocase' }
+    locale
   end
-end 
+end

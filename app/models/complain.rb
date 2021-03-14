@@ -6,5 +6,6 @@ class Complain
   field :description, type: String
   field :company, type: String
 
+  belongs_to :locale
   validates_presence_of :title, :description, :company
 end
