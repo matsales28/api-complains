@@ -14,6 +14,7 @@ gem 'rack-cors'
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'faker'
+  gem 'factory_bot_rails'
 end
 
 group :development do
@@ -30,6 +31,7 @@ group :test do
   gem 'simplecov' # rubocop:todo Bundler/DuplicatedGem
   gem 'simplecov-console'
   gem 'minitest-reporters'
+  gem 'database_cleaner-mongoid'
 end
 
 

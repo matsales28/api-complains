@@ -3,24 +3,36 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    services:
-      mongodb:
-        image: mongo:3.4.23
-        ports: ["27017:27017"]
     steps:
       - uses: actions/checkout@v1
-      - name: Setup Ruby
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.6.x
-      - uses: borales/actions-yarn@v2.0.0
-        with:
-          cmd: install
-      - name: Build and run tests
+      - name: Build Stack
+        run: docker-compose up -d
+      - name: Create database
+        run: docker-compose run api-complains rake db:create
+      - name: Run rubocop
+        run: docker-compose run api-complains rubocop -a
+      - name: Run tests
         env:
           RAILS_ENV: test
+        run: docker-compose run api-complains rake test
+      - name: Run Skunk on Project
         run: |
-          sudo apt-get -yqq install libpq-dev
-          gem install bundler
-          bundle install --jobs 4 --retry 3
-          bundle exec rails test
+          CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+          if [[ "$CURRENT_BRANCH" != "master" ]]; then
+            echo "Executing within branch: $CURRENT_BRANCH"
+            docker-compose run api-complains skunk -b master
+          else
+            echo "Executing within master branch"
+            docker-compose run api-complains skunk
+          fi
+          docker-compose run api-complains rubycritic
+      - name: Upload Code Coverage
+        uses: actions/upload-artifact@v2
+        with:
+          name: code-coverage
+          path: coverage/
+      - name: Upload Ruby Critic
+        uses: actions/upload-artifact@v2
+        with:
+          name: ruby-critic
+          path: file:////api-complains/tmp/rubycritic
