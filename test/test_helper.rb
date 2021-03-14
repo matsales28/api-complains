@@ -59,6 +59,10 @@ class ActiveSupport::TestCase
     DatabaseCleaner.clean
   end
 
+  def setup
+    DatabaseCleaner.clean
+  end
+
   def self.validate_presence_test(model, fields = [])
     fields.each do |field|
       test "validates [#{model}] [#{field}] presence" do
