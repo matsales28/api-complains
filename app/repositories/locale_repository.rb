@@ -7,7 +7,7 @@ class LocaleRepository
     return Error[locale.errors.messages] unless locale.valid?
 
     Success[locale]
-  rescue Mongoid::Errors::MongoidError => e
+  rescue Mongoid::Errors::MongoidError => _e
     ## Log error
     Error[{message: 'Invalid attributes given'}]
   end
