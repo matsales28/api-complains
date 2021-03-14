@@ -7,4 +7,14 @@ class LocaleRepository
 
     Success[locale]
   end
+
+  def locale_ids_by(city:, country:, state:)
+    ids = Locale.by_city(city)
+                .by_state(state)
+                .by_country(country)
+                .pluck(:id)
+    return Error[ids] unless ids.present?
+
+    Success[ids]
+  end
 end

@@ -2,16 +2,27 @@ module Api
   module V1
     class ComplainsController < ApplicationController
       def create
-        @complain, success = ComplainsOperations::Create.new(params: permitted_params).call
+        response, success = ComplainsOperations::Create.new(params: create_params).call
         if success
-          json_response(@complain, :ok)
+          json_response(response, :ok)
         else
-          json_response(@complain.errors.messages, :unprocessable_entity)
+          json_response(response.errors.messages, :unprocessable_entity)
         end
       end
 
+      def search
+        response, success = ComplainsOperations::Search.new(params: search_params).call
+        return json_response(response, :bad_request) unless success
+
+        json_response(response, :ok)
+      end
+
       private
-        def permitted_params
+        def search_params
+          params.require(:complain).permit(:company, :city, :state, :country)
+        end
+
+        def create_params
           params.require(:complain)
                 .permit(
                   :title,

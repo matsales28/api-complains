@@ -12,4 +12,11 @@ class ComplainRepository
 
     Success[complain]
   end
+
+  def count_by_locale_and_company(locale_ids:, company:)
+    complains_count = Complain.by_company(company)
+                              .where(:locale_id.in => locale_ids)
+                              .count
+    Success[complains_count]
+  end
 end

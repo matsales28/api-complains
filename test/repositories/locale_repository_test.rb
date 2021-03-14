@@ -17,12 +17,27 @@ class LocaleRepositoryTest < ActiveSupport::TestCase
   end
 
   test '#find_or_create_by should not create a new Locale if founded one' do
-    params = {city: 'Fortaleza', state: 'CE', country: 'Brazil'}
-    create(:locale, params)
-    response, success = LocaleRepository.new.find_or_create_by(params)
+    locale = create(:locale)
+    response, success = LocaleRepository.new.find_or_create_by({city: locale.city, country: locale.country, state: locale.state})
 
     assert success
     assert_not response.new_record?
     assert_instance_of Locale, response
+  end
+
+  test '#locale_ids_by when nil params return all locale ids' do
+    params = {city: nil, country: nil, state: nil}
+    create(:locale)
+    array_of_ids, success = LocaleRepository.new.locale_ids_by(params)
+    assert success
+    assert_not_empty array_of_ids
+  end
+
+  test '#locale_ids_by if any params givens do not match locale, return array empty' do
+    params = {city: 'Fortaleza', country: 'Brazil', state: 'SP'}
+    create(:locale, city: 'Fortaleza', country: 'Brazil', state: 'CE')
+    array_of_ids, success = LocaleRepository.new.locale_ids_by(params)
+    assert_not success
+    assert_empty array_of_ids
   end
 end

@@ -8,4 +8,5 @@ class Complain
 
   belongs_to :locale, counter_cache: true
   validates_presence_of :title, :description, :company, :locale
+  scope :by_company, -> (company) { where(company: company) if company.present? }
 end
