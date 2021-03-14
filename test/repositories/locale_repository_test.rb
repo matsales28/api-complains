@@ -31,6 +31,6 @@ class LocaleRepositoryTest < ActiveSupport::TestCase
   test '#find_or_create_by with invalid attributes' do
     response, success = LocaleRepository.new.find_or_create_by(teste: 'bla')
     assert_not success
-    assert_equal({message: 'Invalid attributes given'}, response)
+    assert_equal 'Invalid attributes given', response[:message]
   end
 end
