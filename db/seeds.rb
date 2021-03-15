@@ -1,3 +1,4 @@
+puts 'Starting Seed...'
 locales = [
   {city: 'Fortaleza', state: 'CE', country: 'Brazil'},
   {city: 'Rio de Janeiro', state: 'RJ', country: 'Brazil'},
@@ -15,5 +16,4 @@ companies.each do |company|
     Complain.create(title: Faker::GreekPhilosophers.name, description: Faker::GreekPhilosophers.quote, company: company, locale: sp_locale)
   end
 end
-
-puts 'Seedando'
+puts 'Seed finished'
