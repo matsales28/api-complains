@@ -177,3 +177,14 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+
+production:
+  clients:
+    default:
+      database: api_complains_production
+      hosts:
+        - mongo-service:27017
+      options:
+        read:
+          mode: :primary
+        max_pool_size: 1
