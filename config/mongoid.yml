@@ -181,7 +181,6 @@ test:
 production:
   clients:
     default:
-      database: api_complains_production
       uri: mongodb://matheus:jUDxfYtIve30zKgk@cluster0.urvbb.mongodb.net/api_complains_production
       options:
           skip_version_check: true
