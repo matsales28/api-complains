@@ -181,5 +181,4 @@ test:
 production:
   clients:
     default:
-      uri: ENV['DB_URI']
-
+      uri: <%= ENV["DB_URI"] %>
