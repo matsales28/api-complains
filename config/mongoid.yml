@@ -182,9 +182,7 @@ production:
   clients:
     default:
       database: api_complains_production
-      hosts:
-        - matheus:i7x63jNy2KeFxR46@cluster0.urvbb.mongodb.net/api_complains_production
+      uri: mongodb+srv://matheus:jUDxfYtIve30zKgk@cluster0.urvbb.mongodb.net/api_complains_production
       options:
-        read:
-          mode: :primary
-        max_pool_size: 1
+          skip_version_check: true
+          safe: true
