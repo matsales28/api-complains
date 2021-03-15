@@ -23,7 +23,7 @@ This application is deployed to [Heroku](https://api-complains.herokuapp.com/) a
 ![Airbrake](https://user-images.githubusercontent.com/54689845/111095919-38e4da00-851d-11eb-8636-df7ddd93f2b3.png)
 
 
-The project is 100% covered by tests, you can get more details of this at /coverage route and has a high score on Rubycritic, you can check this by running
+The project is **100%** covered by tests, you can get more details of this at coverage_report artifact on Github Action and has a **Score: 97.93** out of 100 on Rubycritic, you can check this by running
 `$ rubycritic`
 
 # Deployment and Development Proccess
