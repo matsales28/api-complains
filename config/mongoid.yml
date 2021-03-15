@@ -181,8 +181,5 @@ test:
 production:
   clients:
     default:
-      uri: mongodb://matheus:jUDxfYtIve30zKgk@cluster0.urvbb.mongodb.net/api_complains_production
-      options:
-          skip_version_check: true
-          safe: true
+      uri: mongodb+srv://matheus:jUDxfYtIve30zKgk@cluster0.urvbb.mongodb.net/api_complains_production?retryWrites=true&w=majority
 
