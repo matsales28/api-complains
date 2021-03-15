@@ -10,9 +10,9 @@ companies = ['Gocase', 'Atlantico', 'ReclameAqui']
 
 companies.each do |company|
   4.times do
-    Complain.create(title: Faker::GreekPhilosophers, description: Faker::GreekPhilosophers, company: company, locale: fortal_locale)
-    Complain.create(title: Faker::GreekPhilosophers, description: Faker::GreekPhilosophers, company: company, locale: rio_locale)
-    Complain.create(title: Faker::GreekPhilosophers, description: Faker::GreekPhilosophers, company: company, locale: sp_locale)
+    Complain.create(title: Faker::GreekPhilosophers.name, description: Faker::GreekPhilosophers.quote, company: company, locale: fortal_locale)
+    Complain.create(title: Faker::GreekPhilosophers.name, description: Faker::GreekPhilosophers.quote, company: company, locale: rio_locale)
+    Complain.create(title: Faker::GreekPhilosophers.name, description: Faker::GreekPhilosophers.quote, company: company, locale: sp_locale)
   end
 end
 
