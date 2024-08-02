@@ -19,10 +19,10 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', '~> 0.85.1', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
-  gem 'solargraph'
+  gem 'rubocop', '~> 0.86.0', require: false
+  gem 'rubocop-performance', '>= 1.8.0', require: false
+  gem 'rubocop-rails', '>= 2.7.0', require: false
+  gem 'solargraph', '>= 0.41.0'
   gem 'skunk'
   gem 'listen', '~> 3.3'
   gem 'spring'
