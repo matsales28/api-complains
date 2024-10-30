@@ -19,7 +19,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rubocop', '~> 0.85.1', require: false
+  gem 'rubocop', '~> 1.66.0', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'solargraph'
