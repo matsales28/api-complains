@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.6.6'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
-gem 'rails', '~> 6.1.3'
+gem 'rails', '~> 7.0.0'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -20,8 +20,8 @@ end
 
 group :development do
   gem 'rubocop', '~> 0.85.1', require: false
-  gem 'rubocop-performance', require: false
-  gem 'rubocop-rails', require: false
+  gem 'rubocop-performance', '>= 1.24.0', require: false
+  gem 'rubocop-rails', '>= 2.30.0', require: false
   gem 'solargraph'
   gem 'skunk'
   gem 'listen', '~> 3.3'
