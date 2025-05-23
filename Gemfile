@@ -9,7 +9,7 @@ gem 'rails', '~> 6.1.3'
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'mongoid'
-gem 'rack-cors'
+gem 'rack-cors', '>= 3.0.0'
 gem 'airbrake'
 gem 'faker'
 
