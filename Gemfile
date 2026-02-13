@@ -8,7 +8,7 @@ gem 'rails', '~> 6.1.3'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 gem 'bootsnap', '>= 1.4.4', require: false
-gem 'mongoid'
+gem 'mongoid', '>= 7.6.1'
 gem 'rack-cors'
 gem 'airbrake'
 gem 'faker'
